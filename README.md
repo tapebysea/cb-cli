@@ -30,6 +30,6 @@ Dependencies:
 
 To install, simply run the following command;
 
-    sudo curl -L -o /usr/bin/cb-cli raw.githubusercontent.com/tapebysea/cb-cli/refs/heads/main/main/cb-cli && sudo chmod +x /usr/bin/cb-cli
+    sudo curl -L -o /usr/bin/cb-cli https://raw.githubusercontent.com/tapebysea/cb-cli/refs/heads/master/main/cb-cli && sudo chmod +x /usr/bin/cb-cli
 
 Watch and download chaturbate streams from the terminal 
