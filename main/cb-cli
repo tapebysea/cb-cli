@@ -43,7 +43,7 @@ if [ "$1" != "" ]; then
 	case $1 in
 	-w | --watch)
 		if [ "$2" != "" ]; then
-			if [ ! "$http_code" = "200" ]; then
+			if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
 				printf "User does not exist\n"
 			else
 				mpv https://chaturbate.com/$2/
@@ -54,7 +54,7 @@ if [ "$1" != "" ]; then
 	;;
 	-d | --download)
 		if [ "$2" != "" ]; then
-			if [ ! "$http_code" = "200" ]; then
+			if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
 				printf "User does not exist\n"
 			else
 				yt-dlp https://chaturbate.com/$2/
@@ -66,7 +66,7 @@ if [ "$1" != "" ]; then
 	-s | --subscribe)
 		if [ "$2" != "" ]; then
 			if [ ! -d $HOME/.config/cb-cli ]; then
-				if [ ! "$http_code" = "200" ]; then
+				if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
 					printf "User does not exist\n"
 				else
 					mkdir $HOME/.config/cb-cli
@@ -76,7 +76,7 @@ if [ "$1" != "" ]; then
 					grep -x "@$2" $HOME/.config/cb-cli/subscriptions.conf || echo "@$2" >> $HOME/.config/cb-cli/subscriptions.conf
 				fi
 			else
-				if [ ! "$http_code" = "200" ]; then
+				if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
 					printf "User does not exist\n"
 				else
 				if [ ! -f $HOME/.config/cb-cli/subscriptions.conf ]; then
