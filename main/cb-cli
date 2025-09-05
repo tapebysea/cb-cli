@@ -44,7 +44,7 @@ if [ "$1" != "" ]; then
 					mpv https://chaturbate.com/$2/
 			fi
 		else
-			printf "Please enter a Chaturbate user"
+			printf "Please specify a live stream to watch"
 		fi
 	;;
 	-d | --download)
@@ -60,9 +60,13 @@ if [ "$1" != "" ]; then
 	;;
 	-s | --subscribe)
 		if [ "$2" != "" ]; then
-			printf "Function not implemented yet"
+			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404'; then
+				echo "User does not exist"
+			else
+				printf "AHHHHHHHHHHHHHH IM LOSING MY MIND"
+			fi
 		else
-			printf "Function not implemented yet"
+			printf "Please specify a user to subscribe to"
 		fi
 	;;
 	-h | --help)
