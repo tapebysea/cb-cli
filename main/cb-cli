@@ -18,19 +18,17 @@ function usage() {
 	    Show all subbed online users
 	  -q, --query
 	    Search for streams by tag
-	  -c, --config
-	    Source a different configuration file
+	  -u, --update
+	    Update cb-cli from the github repo
 	  -h, --help
 	    Display this help message
 
 	Configuration:
-	  By default configuration is stored in
-	  $HOME/.config/cb-cli/cb-cli.conf.
-
-	  You can source a different configuration file with
-	  the --config flag and specifying a file.
-	  
 	  Subscriptions are stored in $HOME/.config/cb-cli/subscriptions.conf
+	  You can create this file manually, or create one automatically by running
+	  cb-cli -s [user]
+
+	  More configuration options may be available in the future
 	\n"
 }
 
@@ -88,6 +86,9 @@ if [ "$1" != "" ]; then
 		else
 			printf "Please specify a user to subscribe to\n"
 		fi
+	;;
+	-u | --update)
+		sudo curl -L -o /usr/bin/cb-cli https://raw.githubusercontent.com/tapebysea/cb-cli/refs/heads/master/main/cb-cli && sudo chmod +x /usr/bin/cb-cli
 	;;
 	-h | --help)
 		usage
