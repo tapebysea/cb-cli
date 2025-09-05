@@ -21,11 +21,13 @@ function usage() {
 	    Display this help message
 
 	Configuration:
-	  By default configuration are stored in
-	  $XDG_CONFIG_HOME/cb-cli/cb-cli.conf.
+	  By default configuration is stored in
+	  $HOME/.config/cb-cli/cb-cli.conf.
 
 	  You can source a different configuration file with
 	  the --config flag and specifying a file.
+	  
+	  Subscriptions are stored in $HOME/.config/cb-cli/subscriptions.conf
 	"
 }
 
@@ -38,7 +40,7 @@ if [ "$1" != "" ]; then
 	case $1 in
 	-w | --watch)
 		if [ "$2" != "" ]; then
-			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404'; then
+			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404\|301'; then
 				printf "User does not exist"
 			else
 					mpv https://chaturbate.com/$2/
@@ -49,7 +51,7 @@ if [ "$1" != "" ]; then
 	;;
 	-d | --download)
 		if [ "$2" != "" ]; then
-			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404'; then
+			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404\|301'; then
 				printf "User does not exist"
 			else
 				yt-dlp https://chaturbate.com/$2/
@@ -60,10 +62,25 @@ if [ "$1" != "" ]; then
 	;;
 	-s | --subscribe)
 		if [ "$2" != "" ]; then
-			if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404'; then
-				echo "User does not exist"
+			if [ ! -d $HOME/.config/cb-cli ]; then
+				if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -q '404\|301'; then
+					printf "User does not exist"
+				else
+					mkdir $HOME/.config/cb-cli
+				if [ ! -f $HOME/.config/cb-cli/subscriptions.conf ]; then
+					touch $HOME/.config/cb-cli/subscriptions.conf
+				fi
+					grep -x "@$2" $HOME/.config/cb-cli/subscriptions.conf || echo "@$2" >> $HOME/.config/cb-cli/subscriptions.conf
+				fi
 			else
-				printf "AHHHHHHHHHHHHHH IM LOSING MY MIND"
+				if curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/$2/ | grep -qe '404\|301'; then
+					printf "User does not exist"
+				else
+				if [ ! -f $HOME/.config/cb-cli/subscriptions.conf ]; then
+					touch $HOME/.config/cb-cli/subscriptions.conf
+				fi
+					grep -x "@$2" $HOME/.config/cb-cli/subscriptions.conf || echo "@$2" >> $HOME/.config/cb-cli/subscriptions.conf
+				fi
 			fi
 		else
 			printf "Please specify a user to subscribe to"
