@@ -1,5 +1,0 @@
-# Command to test if a room is online or not.
-#
-# curl -s https://chaturbate.com/user/ | grep -o "public"
-#
-# If string "public" is found it means the room is online
