@@ -16,8 +16,6 @@ function usage() {
 	    Subscribe to a user
 	  -o, --online
 	    Show all subbed online users
-	  -q, --query
-	    Search for streams by tag
 	  -u, --update
 	    Update cb-cli from the github repo
 	  -h, --help
