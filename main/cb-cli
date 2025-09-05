@@ -15,7 +15,7 @@ function usage() {
 	  -s, --subscribe
 	    Subscribe to a user
 	  -o, --online
-	    Show all subbed online users
+	    Check subscriptions file for online streamers
 	  -u, --update
 	    Update cb-cli from the github repo
 	  -h, --help
