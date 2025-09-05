@@ -11,7 +11,7 @@ look at all these great features!!!!
 
     ✅ Download currently live streams with yt-dlp
 
-    ✅ Locally stored subscriptions (feature not implemented yet)
+    ✅ Locally stored subscriptions
 
     ❌ Check for online streamers (feature not implemented yet)
 
