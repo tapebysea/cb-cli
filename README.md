@@ -19,7 +19,34 @@ look at all these great features!!!!
     𐄂 Check which streamers are online (feature not implemented yet)
 
     𐄂 Feed your cat (feature not implemented yet)
+
+# Usage
+
+To watch or download a chaturbate stream, you can use either the -w/--watch or -d/--download flags respectively;
+
+    cb-cli -w/--watch jessicaparkerrr
+    cb-cli -d/--download jessicaparkerrr
+
+You can add a streamer to your ~/.config/cb-cli/subscriptions.conf file with the -s/--subscribe flag;
+
+    cb-cli -s/--subscribe jessicaparkerr
+
+You will be able to use the o/--online flags to list which of your subscriptions are live.
+
+    cb-cli -o/--online
     
+    note; this feature has not been implemented yet
+
+To update cb-cli, you can use the cb-cli --update command;
+
+    cb-cli -u/--update
+
+Lastly, to run the help dialog, use the -h/--help flags
+
+    cb-cli -h/--help
+
+> Note: More options may be implemented in the future such as --query to search for streams with specific tags. As of right now this is TBD and not on my list of priorities.
+
 # Installation
 
 Dependencies:
