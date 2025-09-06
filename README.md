@@ -60,4 +60,4 @@ To install, simply run the following command;
 
     sudo curl -L -o /usr/bin/cb-cli https://raw.githubusercontent.com/tapebysea/cb-cli/refs/heads/master/main/cb-cli && sudo chmod +x /usr/bin/cb-cli
 
-> note: this cli is currently work-in-progress and not yet feature complete. right now you may as well just drag a chaturbate url into mpv. if you'd like to contribute, please raise an issue or pull request.
+> Note; Contributors are welcome. This cli is currently work-in-progress and not yet feature complete. Right now you may as well just drag a chaturbate url into mpv. If you'd like to contribute, please raise an issue or pull request.
