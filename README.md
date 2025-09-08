@@ -2,7 +2,7 @@
 
 cb-cli is a bash script to watch chaturbate streams in mpv from the terminal. You can subscribe to your favorite streamers, check who's online, watch or download a live stream, and update cb-cli all from the terminal!
 
-![smugumin](https://github.com/user-attachments/assets/9027fd5f-1e40-428b-a0d6-dcd39521c122)
+![smugumin](https://github.com/user-attachments/assets/50403e51-0d88-4663-ac0c-1dd6e304fa1d)
 
 # Features
 
