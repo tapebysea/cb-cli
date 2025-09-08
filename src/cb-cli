@@ -1,0 +1,107 @@
+#!/bin/bash
+
+http_code=$(curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/"$2"/)
+
+function usage() {
+	printf "
+	Usage:
+	  cb-cli [options] [arguments]
+
+	Options:
+	  -w, --watch
+	    Watch a user thar is currently live
+	  -d, --download
+	    Download a stream from a user that is currently live
+	  -s, --subscribe
+	    Subscribe to a user
+	  -o, --online
+	    Check subscriptions file for online streamers
+	  -u, --update
+	    Update cb-cli from the github repo
+	  -h, --help
+	    Display this help message
+
+	Configuration:
+	  Subscriptions are stored in $HOME/.config/cb-cli/subscriptions.conf
+	  You can create this file manually, or create one automatically by running
+	  cb-cli -s [user]
+
+	  More configuration options may be available in the future
+	\n"
+}
+
+if [ $# -eq 0 ]; then
+	usage
+	exit 1
+fi
+
+if [ "$1" != "" ]; then
+	case $1 in
+	-w | --watch)
+		if [ "$2" != "" ]; then
+			if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
+				printf "User does not exist\n"
+			else
+				mpv https://chaturbate.com/"$2"/
+			fi
+		else
+			printf "Please specify a live stream to watch\n"
+		fi
+	;;
+	-d | --download)
+		if [ "$2" != "" ]; then
+			if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
+				printf "User does not exist\n"
+			else
+				yt-dlp https://chaturbate.com/"$2"/
+			fi
+		else
+			printf "Please specify a live stream to download\n"
+		fi
+	;;
+	-s | --subscribe)
+		if [ "$2" != "" ]; then
+			if [ ! -d "$HOME"/.config/cb-cli ]; then
+				if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
+					printf "User does not exist\n"
+				else
+					mkdir "$HOME"/.config/cb-cli
+				if [ ! -f "$HOME"/.config/cb-cli/subscriptions.conf ]; then
+					touch "$HOME"/.config/cb-cli/subscriptions.conf
+				fi
+					grep -x "@$2" "$HOME"/.config/cb-cli/subscriptions.conf || echo "@$2" >> "$HOME"/.config/cb-cli/subscriptions.conf
+				fi
+			else
+				if [ "$http_code" = "404" ] || [ "$http_code" = "301" ]; then
+					printf "User does not exist\n"
+				else
+				if [ ! -f "$HOME"/.config/cb-cli/subscriptions.conf ]; then
+					touch "$HOME"/.config/cb-cli/subscriptions.conf
+				fi
+					grep -x "@$2" "$HOME"/.config/cb-cli/subscriptions.conf || echo "@$2" >> "$HOME"/.config/cb-cli/subscriptions.conf
+				fi
+			fi
+		else
+			printf "Please specify a user to subscribe to\n"
+		fi
+	;;
+	-o | --online)
+		sub_list=$(while read -r line; do
+			sed -e '/#/d' -e '/^\s*$/d' | tr -d '@'
+		done < "$HOME"/.config/cb-cli/subscriptions.conf)
+
+		while read -r line; do
+			user_check=$(curl -s https://chaturbate.com/"$line"/ | grep -o "public")
+			if [ "$user_check" = "public" ]; then
+				printf "$line is currently live\n"
+			fi
+		done <<< "$sub_list"
+	;;
+	-u | --update)
+		sudo curl -L -o /usr/bin/cb-cli https://raw.githubusercontent.com/tapebysea/cb-cli/refs/heads/master/src/cb-cli && sudo chmod +x /usr/bin/cb-cli
+	;;
+	-h | --help)
+		usage
+	;;
+	esac
+fi
