@@ -12,7 +12,7 @@ look at all these great features!!!!
 
     ✔ Download currently live streams with yt-dlp
 
-    ✔ Locally stored subscriptions
+    ✔ Store subscriptions locally
 
     ✔ Easily update cb-cli with -u flag
 
