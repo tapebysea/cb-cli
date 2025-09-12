@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#set -x
 http_code=$(curl -s -o /dev/null -w "%{http_code}" https://chaturbate.com/"$2"/)
 
 function usage() {
@@ -87,7 +87,7 @@ if [ "$1" != "" ]; then
 	;;
 	-o | --online)
 		sub_list=$(while read -r line; do
-			sed -e '/#/d' -e '/^\s*$/d' | tr -d '@'
+			awk '/@/' | tr -d @
 		done < "$HOME"/.config/cb-cli/subscriptions.conf)
 
 		while read -r line; do
