@@ -104,7 +104,7 @@ if [ "$1" != "" ]; then
 		usage
 	;;
 	*)
-		printf "Unknown flag or argument\nsee cb-cli --help for more information"
+		printf "Unknown flag or argument\nsee cb-cli --help for more information\n"
 		exit 1
 	;;
 	esac
