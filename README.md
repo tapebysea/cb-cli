@@ -53,8 +53,7 @@ Dependencies:
 
     grep
     curl
-    sed
-    tr
+    awk
     mpv
     yt-dlp
 
