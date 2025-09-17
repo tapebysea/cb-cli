@@ -25,11 +25,11 @@ look at all these great features!!!!
 To watch or download a chaturbate stream, you can use either the -w/--watch or -d/--download flags respectively;
 
     cb-cli -w/--watch jessicaparkerrr
-    cb-cli -d/--download jessicaparkerrr
+    cb-cli -d/--download parisbabyxox
 
 You can add a streamer to your ~/.config/cb-cli/subscriptions.conf file with the -s/--subscribe flag;
 
-    cb-cli -s/--subscribe jessicaparkerr
+    cb-cli -s/--subscribe scarletterose_504259
 
 You can also use the o/--online flags to list which of your subscriptions are live.
 
