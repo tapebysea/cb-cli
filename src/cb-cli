@@ -22,11 +22,13 @@ function usage() {
 	    Display this help message
 
 	Configuration:
-	  Subscriptions are stored in $HOME/.config/cb-cli/subscriptions.conf
+	  Subscriptions are stored in \$HOME/.config/cb-cli/subscriptions.conf
 	  You can create this file manually, or create one automatically by running
 	  cb-cli -s [user]
 
-	  More configuration options may be available in the future
+	  If you would like to add a user to your subscriptions file manually, enter
+	  their username in your \$HOME/.config/cb-cli/subscriptions.conf file,
+	  All usernames must start with the \"@\" specifier.
 	\n"
 }
 
